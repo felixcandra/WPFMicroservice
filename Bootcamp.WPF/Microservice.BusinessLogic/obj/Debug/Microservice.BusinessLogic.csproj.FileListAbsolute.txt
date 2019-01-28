@@ -1,0 +1,16 @@
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.BusinessLogic.exe.config
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.BusinessLogic.exe
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.BusinessLogic.pdb
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\ConsoleApplication1.exe
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\EntityFramework.dll
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.Common.exe
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.DataAccess.exe
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\ConsoleApplication1.pdb
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.Common.pdb
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\Microservice.DataAccess.pdb
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\EntityFramework.xml
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\obj\Debug\Microservice.BusinessLogic.csprojResolveAssemblyReference.cache
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\obj\Debug\Microservice.BusinessLogic.exe
+c:\Users\felix\documents\visual studio 2015\Projects\Bootcamp.WPF\Microservice.BusinessLogic\obj\Debug\Microservice.BusinessLogic.pdb

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Bootcamp22Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Suppliers_id" Type="int" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="JoinDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionsItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="CreateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DeleteDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="Items_Id" Type="int" />
+          <Property Name="Transaction_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_Items_dbo_Suppliers_Suppliers_id">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="Suppliers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionsItems_dbo_Items_Items_Id">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="TransactionsItems" Type="Self.TransactionsItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TransactionsItems">
+              <PropertyRef Name="Items_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id">
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="0..1" />
+          <End Role="TransactionsItems" Type="Self.TransactionsItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TransactionsItems">
+              <PropertyRef Name="Transaction_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bootcamp22ModelStoreContainer">
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionsItems" EntityType="Self.TransactionsItems" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Items_dbo_Suppliers_Suppliers_id" Association="Self.FK_dbo_Items_dbo_Suppliers_Suppliers_id">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionsItems_dbo_Items_Items_Id" Association="Self.FK_dbo_TransactionsItems_dbo_Items_Items_Id">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="TransactionsItems" EntitySet="TransactionsItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id" Association="Self.FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="TransactionsItems" EntitySet="TransactionsItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bootcamp22Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Suppliers_id" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_dbo_Items_dbo_Suppliers_Suppliers_id" FromRole="Items" ToRole="Suppliers" />
+          <NavigationProperty Name="TransactionsItems" Relationship="Self.FK_dbo_TransactionsItems_dbo_Items_Items_Id" FromRole="Items" ToRole="TransactionsItems" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="JoinDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_dbo_Items_dbo_Suppliers_Suppliers_id" FromRole="Suppliers" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="TransactionsItems" Relationship="Self.FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id" FromRole="Transactions" ToRole="TransactionsItems" />
+        </EntityType>
+        <EntityType Name="TransactionsItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DeleteDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Items_Id" Type="Int32" />
+          <Property Name="Transaction_Id" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_dbo_TransactionsItems_dbo_Items_Items_Id" FromRole="TransactionsItems" ToRole="Items" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id" FromRole="TransactionsItems" ToRole="Transactions" />
+        </EntityType>
+        <Association Name="FK_dbo_Items_dbo_Suppliers_Suppliers_id">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="Suppliers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionsItems_dbo_Items_Items_Id">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="TransactionsItems" Type="Self.TransactionsItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TransactionsItems">
+              <PropertyRef Name="Items_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id">
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="TransactionsItems" Type="Self.TransactionsItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TransactionsItems">
+              <PropertyRef Name="Transaction_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="TransactionsItems" EntityType="Self.TransactionsItem" />
+          <AssociationSet Name="FK_dbo_Items_dbo_Suppliers_Suppliers_id" Association="Self.FK_dbo_Items_dbo_Suppliers_Suppliers_id">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionsItems_dbo_Items_Items_Id" Association="Self.FK_dbo_TransactionsItems_dbo_Items_Items_Id">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="TransactionsItems" EntitySet="TransactionsItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id" Association="Self.FK_dbo_TransactionsItems_dbo_Transactions_Transaction_Id">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="TransactionsItems" EntitySet="TransactionsItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bootcamp22ModelStoreContainer" CdmEntityContainer="MyContext">
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="Bootcamp22Model.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Suppliers_id" ColumnName="Suppliers_id" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="Bootcamp22Model.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="Bootcamp22Model.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionsItems">
+            <EntityTypeMapping TypeName="Bootcamp22Model.TransactionsItem">
+              <MappingFragment StoreEntitySet="TransactionsItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Items_Id" ColumnName="Items_Id" />
+                <ScalarProperty Name="Transaction_Id" ColumnName="Transaction_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
